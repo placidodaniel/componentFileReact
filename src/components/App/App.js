@@ -7,9 +7,19 @@ class App extends React.Component {
 
   state = { images: [] }
 
-  onSearchSubmit = async text => {
-    const response = await searchPhotos(text)
-    this.setState({ images: response.data.hits })
+ 
+  onSearchSubmit = async file => {
+    var fileReader = new FileReader();
+    fileReader.onload = function (e) {
+      var textFromFileLoaded = e.target.result;
+      var fileContents = file;
+      alert(fileReader.result);
+    }
+    fileReader.readAsText(file, "UTF-8");
+    alert('passei aqui 2'+file)
+    //const response = await searchPhotos(text)
+   
+    //this.setState({ images: response.data.hits })
   }
 
   render() {

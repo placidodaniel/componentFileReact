@@ -6,7 +6,8 @@ class SearchBar extends React.Component {
 
   onFormSubmit = event => {
     event.preventDefault()
-    this.props.onSubmit(this.state.text)
+    alert('passei aqui 1'+this.state.file)
+    this.props.onSubmit(this.state.file)
   }
 
   render() {
@@ -15,9 +16,12 @@ class SearchBar extends React.Component {
         <form onSubmit={this.onFormSubmit} className="ui form">
           <div className="field">
             <label>Pesquisar imagem</label>
-            <input type="text"
-              value={this.state.text}
-              onChange={e => this.setState({ text: e.target.value })}></input>
+            <input type="file" name="file"
+              ref={input => {
+                this.filesInput = input;
+              }}
+              onChange={e => this.setState({ file: e.target.files[0] })}></input>
+              <button>Enviar</button>
           </div>
         </form>
       </div>
